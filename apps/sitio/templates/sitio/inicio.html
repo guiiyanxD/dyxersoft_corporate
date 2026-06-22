@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="hero-dyxersoft py-5">
+    <div class="container py-4 text-center">
+        <h1 class="display-5 fw-bold">{{ perfil.tagline }}</h1>
+        <p class="lead">Equipo multidisciplinario con base en {{ perfil.ciudad }}.</p>
+        <a href="{% url 'sitio:contacto' %}" class="btn btn-light btn-lg mt-2">Conversemos sobre tu proyecto</a>
+    </div>
+</section>
+
+<div class="container py-5">
+    <div class="row text-center mb-5">
+        <div class="col-md-4">
+            <h2 class="fw-bold">{{ perfil.clientes_activos }}+</h2>
+            <p class="text-muted">Clientes activos</p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="fw-bold">{{ perfil.anios_experiencia }}+</h2>
+            <p class="text-muted">Años de experiencia</p>
+        </div>
+        <div class="col-md-4">
+            <h2 class="fw-bold">{{ perfil.porcentaje_compromiso }}%</h2>
+            <p class="text-muted">Compromiso con la calidad</p>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Servicios destacados</h2>
+    <div class="row g-4 mb-5">
+        {% for servicio in servicios %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    {% if servicio.icono %}<i class="{{ servicio.icono }} fs-2 text-dx-secondary mb-2"></i>{% endif %}
+                    <h5 class="card-title">{{ servicio.nombre }}</h5>
+                    <p class="card-text text-muted">{{ servicio.descripcion_corta }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mb-5">
+        <a href="{% url 'sitio:servicios' %}" class="btn btn-outline-primary">Ver todos los servicios</a>
+    </div>
+
+    <h2 class="text-center mb-4">Portafolio</h2>
+    <div class="row g-4 mb-5">
+        {% for proyecto in proyectos %}
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{ proyecto.nombre }}</h5>
+                    {% if proyecto.cliente %}<p class="text-muted small mb-1">Cliente: {{ proyecto.cliente }}</p>{% endif %}
+                    <p class="card-text">{{ proyecto.descripcion_corta }}</p>
+                    <a href="{{ proyecto.url_solicitar_demo }}" class="btn btn-sm btn-primary">Solicitar demo</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-center mb-5">
+        <a href="{% url 'sitio:portafolio' %}" class="btn btn-outline-primary">Ver portafolio completo</a>
+    </div>
+
+    {% if noticias %}
+    <h2 class="text-center mb-4">Últimas noticias</h2>
+    <div class="row g-4">
+        {% for noticia in noticias %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h6 class="card-title">{{ noticia.titulo }}</h6>
+                    <p class="card-text text-muted small">{{ noticia.resumen }}</p>
+                    <a href="{{ noticia.get_absolute_url }}" class="small">Leer más →</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

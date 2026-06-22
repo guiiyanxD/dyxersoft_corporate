@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Servicios{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Nuestros servicios</h1>
+    <div class="row g-4">
+        {% for servicio in servicios %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    {% if servicio.icono %}<i class="{{ servicio.icono }} fs-2 text-dx-secondary mb-2"></i>{% endif %}
+                    <h5 class="card-title">{{ servicio.nombre }}</h5>
+                    <p class="card-text text-muted">{{ servicio.descripcion_corta }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center">Todavía no hay servicios cargados.</p>
+        {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+        <a href="{% url 'sitio:contacto' %}" class="btn btn-primary">Conversemos sobre tu proyecto</a>
+    </div>
+</div>
+{% endblock %}

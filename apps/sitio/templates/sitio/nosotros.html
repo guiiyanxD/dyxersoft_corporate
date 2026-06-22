@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Nosotros{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Sobre {{ perfil.nombre }}</h1>
+    <p class="lead text-center mx-auto" style="max-width: 760px;">{{ perfil.mision }}</p>
+
+    <h2 class="text-center mt-5 mb-4">Por qué trabajar con nosotros</h2>
+    <div class="row g-4">
+        {% for beneficio in beneficios %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    {% if beneficio.icono %}<i class="{{ beneficio.icono }} fs-2 text-dx-accent mb-2"></i>{% endif %}
+                    <h5 class="card-title">{{ beneficio.titulo }}</h5>
+                    <p class="card-text text-muted">{{ beneficio.descripcion }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

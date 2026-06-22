@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Boletín{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Boletín</h1>
+    <div class="row g-4">
+        {% for noticia in noticias %}
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if noticia.imagen %}
+                <img src="{{ noticia.imagen.url }}" class="card-img-top" alt="{{ noticia.titulo }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ noticia.titulo }}</h5>
+                    <p class="text-muted small">{{ noticia.fecha_publicacion|date:"d/m/Y" }}</p>
+                    <p class="card-text">{{ noticia.resumen }}</p>
+                    <a href="{{ noticia.get_absolute_url }}" class="btn btn-sm btn-outline-primary">Leer más</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center">Todavía no hay publicaciones en el boletín.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ proyecto.nombre }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <a href="{% url 'sitio:portafolio' %}" class="d-inline-block mb-3">&larr; Volver al portafolio</a>
+    <h1>{{ proyecto.nombre }}</h1>
+    {% if proyecto.cliente %}<p class="text-muted">Cliente: {{ proyecto.cliente }}</p>{% endif %}
+    {% if proyecto.imagen %}
+    <img src="{{ proyecto.imagen.url }}" class="img-fluid rounded mb-4" alt="{{ proyecto.nombre }}">
+    {% endif %}
+    <p class="lead">{{ proyecto.descripcion_corta }}</p>
+    {% if proyecto.descripcion_larga %}
+    <p>{{ proyecto.descripcion_larga|linebreaksbr }}</p>
+    {% endif %}
+    <a href="{{ proyecto.url_solicitar_demo }}" class="btn btn-primary">Solicitar demo</a>
+</div>
+{% endblock %}

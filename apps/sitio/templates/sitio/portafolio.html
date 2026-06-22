@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Portafolio{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Portafolio</h1>
+    <div class="row g-4">
+        {% for proyecto in proyectos %}
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                {% if proyecto.imagen %}
+                <img src="{{ proyecto.imagen.url }}" class="card-img-top" alt="{{ proyecto.nombre }}">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{ proyecto.nombre }}</h4>
+                    {% if proyecto.cliente %}<p class="text-muted small mb-1">Cliente: {{ proyecto.cliente }}</p>{% endif %}
+                    <p class="card-text">{{ proyecto.descripcion_corta }}</p>
+                    <div class="d-flex gap-2">
+                        <a href="{{ proyecto.get_absolute_url }}" class="btn btn-sm btn-outline-primary">Ver más</a>
+                        <a href="{{ proyecto.url_solicitar_demo }}" class="btn btn-sm btn-primary">Solicitar demo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center">Todavía no hay proyectos cargados.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

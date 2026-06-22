@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ noticia.titulo }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <a href="{% url 'sitio:boletin_lista' %}" class="d-inline-block mb-3">&larr; Volver al boletín</a>
+    <h1>{{ noticia.titulo }}</h1>
+    <p class="text-muted">{{ noticia.fecha_publicacion|date:"d/m/Y" }}</p>
+    {% if noticia.imagen %}
+    <img src="{{ noticia.imagen.url }}" class="img-fluid rounded mb-4" alt="{{ noticia.titulo }}">
+    {% endif %}
+    <div>{{ noticia.contenido|linebreaksbr }}</div>
+</div>
+{% endblock %}

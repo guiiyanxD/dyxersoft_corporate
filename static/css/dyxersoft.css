@@ -1,0 +1,84 @@
+:root {
+    --dx-primary: hsl(220 70% 45%);
+    --dx-primary-dark: hsl(220 70% 35%);
+    --dx-secondary: hsl(190 75% 50%);
+    --dx-accent: hsl(270 65% 60%);
+    --dx-foreground: hsl(220 15% 15%);
+}
+
+body {
+    background-color: #f7f9fc;
+    color: var(--dx-foreground);
+}
+
+.navbar-dyxersoft {
+    background: linear-gradient(90deg, var(--dx-primary) 0%, var(--dx-primary-dark) 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+.navbar-dyxersoft .navbar-brand {
+    font-weight: 700;
+    color: #fff !important;
+}
+
+.navbar-dyxersoft .nav-link {
+    color: rgba(255, 255, 255, .85) !important;
+}
+
+.navbar-dyxersoft .nav-link.active,
+.navbar-dyxersoft .nav-link:hover {
+    color: #fff !important;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--dx-primary);
+    --bs-btn-border-color: var(--dx-primary);
+    --bs-btn-hover-bg: var(--dx-primary-dark);
+    --bs-btn-hover-border-color: var(--dx-primary-dark);
+    --bs-btn-active-bg: var(--dx-primary-dark);
+}
+
+.text-dx-secondary {
+    color: var(--dx-secondary) !important;
+}
+
+.text-dx-accent {
+    color: var(--dx-accent) !important;
+}
+
+.bg-dx-accent {
+    background-color: var(--dx-accent) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--dx-primary);
+    box-shadow: 0 0 0 .2rem hsl(220 70% 45% / .2);
+}
+
+.hero-dyxersoft {
+    background: linear-gradient(135deg, var(--dx-primary) 0%, var(--dx-accent) 100%);
+    color: #fff;
+}
+
+footer.footer-dyxersoft {
+    background-color: var(--dx-foreground);
+    color: rgba(255, 255, 255, .85);
+}
+
+footer.footer-dyxersoft a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer.footer-dyxersoft a:hover {
+    text-decoration: underline;
+}
+
+#chat-widget-dyxersoft {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: min(360px, 90vw);
+    z-index: 1050;
+}

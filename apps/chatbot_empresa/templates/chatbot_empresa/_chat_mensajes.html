@@ -1,0 +1,37 @@
+{% comment %}
+Partial HTMX de polling. Mientras el último mensaje sea del usuario (esperando
+respuesta del asistente) se re-renderiza solo (cada 2s); al llegar la respuesta, el
+div ya no tiene hx-trigger y el polling se detiene solo.
+{% endcomment %}
+<div id="chat-mensajes"
+     {% if conversacion.mensajes.last.rol == "USUARIO" %}
+     hx-get="{% url 'chatbot_empresa:estado' %}"
+     hx-trigger="every 2s"
+     hx-swap="outerHTML"
+     {% endif %}>
+    {% for m in conversacion.mensajes.all %}
+        {% if m.rol == "USUARIO" %}
+        <div class="d-flex justify-content-end mb-2">
+            <div class="bg-primary text-white rounded-3 px-3 py-2 small" style="max-width: 85%;">
+                {{ m.contenido|linebreaksbr }}
+            </div>
+        </div>
+        {% else %}
+        <div class="d-flex justify-content-start mb-2">
+            <div class="bg-light border rounded-3 px-3 py-2 small" style="max-width: 85%;">
+                {{ m.contenido|linebreaksbr }}
+            </div>
+        </div>
+        {% endif %}
+    {% empty %}
+        <p class="text-muted text-center small py-4">¡Hola! Preguntame sobre Dyxersoft.</p>
+    {% endfor %}
+    {% if conversacion.mensajes.last.rol == "USUARIO" %}
+    <div class="d-flex justify-content-start mb-2">
+        <div class="bg-light border rounded-3 px-3 py-2 text-muted small d-flex align-items-center gap-2">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+            Escribiendo…
+        </div>
+    </div>
+    {% endif %}
+</div>

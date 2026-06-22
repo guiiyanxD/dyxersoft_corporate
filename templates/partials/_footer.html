@@ -1,0 +1,28 @@
+<footer class="footer-dyxersoft py-4 mt-5">
+    <div class="container d-flex flex-wrap justify-content-between gap-3">
+        <div>
+            <strong>Dyxersoft</strong>
+            <div class="small">{{ perfil_footer.ciudad }}</div>
+        </div>
+        <div class="small">
+            <a href="mailto:{{ perfil_footer.email_contacto }}">
+                <i class="bi bi-envelope-fill me-1"></i>{{ perfil_footer.email_contacto }}
+            </a>
+            <span class="mx-2">·</span>
+            <a href="https://wa.me/{{ perfil_footer.whatsapp|cut:" "|cut:"+" }}" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-whatsapp me-1"></i>WhatsApp
+            </a>
+        </div>
+        <div class="small">
+            <a href="{{ perfil_footer.linkedin_url }}" target="_blank" rel="noopener noreferrer" class="me-3">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="{{ perfil_footer.facebook_url }}" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-facebook"></i>
+            </a>
+        </div>
+    </div>
+    <div class="container mt-2">
+        <span class="small">&copy; {% now "Y" %} Dyxersoft. Todos los derechos reservados.</span>
+    </div>
+</footer>
