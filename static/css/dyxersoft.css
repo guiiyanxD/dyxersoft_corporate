@@ -60,7 +60,7 @@ body {
 }
 
 .hero-dyxersoft {
-    background: linear-gradient(135deg, var(--dx-primary) 0%, var(--dx-accent) 100%);
+    background-color: var(--dx-primary);
     color: #fff;
 }
 
