@@ -9,6 +9,9 @@
 body {
     background-color: #f7f9fc;
     color: var(--dx-foreground);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .navbar-dyxersoft {
