@@ -109,7 +109,7 @@ CELERY_TASK_ROUTES = {
 
 # LLM local (Ollama)
 OLLAMA_BASE_URL = config("OLLAMA_BASE_URL", default="http://ollama:11434")
-OLLAMA_MODEL = config("OLLAMA_MODEL", default="qwen2.5:3b")
+OLLAMA_MODEL = config("OLLAMA_MODEL", default="llama3.1:8b-instruct-q4_K_M")
 
 # Email (notificación best-effort del formulario de contacto)
 EMAIL_HOST = config("EMAIL_HOST", default="localhost")
