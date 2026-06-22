@@ -14,4 +14,4 @@ RUN chmod +x /entrypoint.sh
 COPY . .
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:${PORT:-8000}"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && python manage.py crear_superusuario_inicial && gunicorn config.wsgi:application --bind 0.0.0.0:${PORT:-8000}"]
