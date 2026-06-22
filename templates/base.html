@@ -42,13 +42,31 @@
     var widget = document.getElementById("chat-widget-dyxersoft");
     if (!footer || !widget) return;
 
-    // Cuando el footer entra en el viewport, sube el widget esa misma altura
-    // para que nunca se solape con él (pasa en páginas cortas como Nosotros).
-    new IntersectionObserver(function (entries) {
-        var entry = entries[0];
-        var offset = entry.isIntersecting ? entry.intersectionRect.height + 24 : 0;
-        widget.style.setProperty("--chat-widget-bottom", offset ? offset + "px" : "1.5rem");
-    }).observe(footer);
+    // Sube el widget lo necesario para que nunca se solape con el footer,
+    // sin importar si la página es larga (scrolleada hasta el fondo) o
+    // corta (footer visible desde la carga, como en Portafolio/Boletín).
+    var MARGEN = 16;
+    var DEFECTO = 24;
+    var pendiente = false;
+
+    function ajustar() {
+        var footerTop = footer.getBoundingClientRect().top;
+        var distanciaAlFondo = window.innerHeight - footerTop;
+        var offset = distanciaAlFondo > 0 ? distanciaAlFondo + MARGEN : DEFECTO;
+        widget.style.bottom = offset + "px";
+        pendiente = false;
+    }
+
+    function solicitarAjuste() {
+        if (!pendiente) {
+            pendiente = true;
+            requestAnimationFrame(ajustar);
+        }
+    }
+
+    ajustar();
+    window.addEventListener("scroll", solicitarAjuste, { passive: true });
+    window.addEventListener("resize", solicitarAjuste);
 })();
 </script>
 {% block extra_js %}{% endblock %}
