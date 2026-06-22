@@ -20,6 +20,7 @@ Pillow==11.*
 
 # Production server
 gunicorn==23.*
+whitenoise==6.*
 
 # Development
 pytest-django==4.9.*
