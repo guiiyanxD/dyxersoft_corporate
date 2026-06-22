@@ -77,8 +77,9 @@ footer.footer-dyxersoft a:hover {
 
 #chat-widget-dyxersoft {
     position: fixed;
-    bottom: 1.5rem;
+    bottom: var(--chat-widget-bottom, 1.5rem);
     right: 1.5rem;
     width: min(360px, 90vw);
     z-index: 1050;
+    transition: bottom .15s ease-out;
 }

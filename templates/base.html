@@ -36,6 +36,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
+<script>
+(function () {
+    var footer = document.getElementById("site-footer");
+    var widget = document.getElementById("chat-widget-dyxersoft");
+    if (!footer || !widget) return;
+
+    // Cuando el footer entra en el viewport, sube el widget esa misma altura
+    // para que nunca se solape con él (pasa en páginas cortas como Nosotros).
+    new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+        var offset = entry.isIntersecting ? entry.intersectionRect.height + 24 : 0;
+        widget.style.setProperty("--chat-widget-bottom", offset ? offset + "px" : "1.5rem");
+    }).observe(footer);
+})();
+</script>
 {% block extra_js %}{% endblock %}
 
 </body>

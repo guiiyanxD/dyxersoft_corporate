@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class PerfilEmpresa(models.Model):
@@ -137,6 +138,11 @@ class Noticia(models.Model):
 
     def __str__(self):
         return self.titulo
+
+    def save(self, *args, **kwargs):
+        if self.publicada and self.fecha_publicacion is None:
+            self.fecha_publicacion = timezone.now()
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("sitio:boletin_detalle", kwargs={"slug": self.slug})
